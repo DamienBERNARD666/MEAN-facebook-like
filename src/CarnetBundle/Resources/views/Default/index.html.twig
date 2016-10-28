@@ -1,0 +1,36 @@
+{% extends "/base.html.twig" %}
+{% block body %}
+    {% if  is_granted('IS_AUTHENTICATED_FULLY') %}
+        <a href="{{ path('fos_user_profile_show') }}">Mon compte</a>
+        <a href="{{ path('fos_user_security_logout') }}">Se Déconnecter</a>
+        {%if affichage == 0%}
+            <a href="{{ path('add') }}">Ajouter un contact</a>
+            {% for contact in contacts%}
+                <p>{{ contact.nom }} {{ contact.prenom }} <a href="{{ path('delete', {'id' : contact.id}) }}">X</a> <a href="{{ path('afficher', {'id' : contact.id}) }}">détails</a> <a href="{{ path('modifier', {'id' : contact.id}) }}">modifier</a></p>
+            {% endfor %}
+        {% elseif affichage == 1 %}
+            <p> Ajouter un contact :</p>
+            {{ form_start(form) }}
+            {{ form_widget(form) }}
+            {{ form_end(form) }}
+            <a href="{{ path('index') }}">Accueil</a>
+        {% elseif affichage == 2 %}      
+            {% for contact in contacts%}
+                <p>{{ contact.nom }}<br/>{{ contact.prenom }} <br/>{{ contact.email }} <br/>{{ contact.telephone }} <br/>{{ contact.adresse }} <br/>{{ contact.site }}</p>
+                <a href="{{ path('index') }}">Accueil</a>
+            {% endfor %}    
+        {% elseif affichage == 3 %}
+             <p> Modifier un contact <p>
+            {{ form_start(form) }}
+            {{ form_widget(form) }}
+            {{ form_end(form) }}
+            <a href="{{ path('index') }}">Accueil</a>
+        {% endif %}
+    {% else %}
+        <a href="{{ path('fos_user_security_login') }}">Se connecter</a>
+        </br>
+        <a href="{{ path('fos_user_registration_register') }}">S'inscrire</a>
+    {% endif %}
+    
+
+{% endblock %}
