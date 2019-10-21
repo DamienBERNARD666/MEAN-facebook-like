@@ -1,0 +1,13 @@
+<div>
+    <ul>
+        <li *ngFor="let contact of contacts"> {{ contact.contact }}<a href="" onclick="return false;" (click)="deleteOne(contact) && remove()">Supprimer</a>  </li>
+    </ul>
+</div>
+
+<div class="form-group" *ngIf="possibleContacts">
+    <label for="exampleFormControlSelect1">Choissisez un contact</label>
+    <select class="form-control" id="exampleFormControlSelect1">
+        <option *ngFor="let cc of possibleContacts" value="{{cc}}">{{cc}}</option>
+   
+    </select>
+</div>

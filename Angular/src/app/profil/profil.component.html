@@ -1,0 +1,57 @@
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <table class="table table-bordered" *ngIf="userDetails">
+                <thead class="thead-dark">
+                    <tr>
+                        <th colspan="4" scope="row" class="text-center">Votre profil</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Nom complet</td>
+                        <td><input [(ngModel)]="userDetails.fullName"  placeholder="Adresse email" name="fullName"></td>
+                    </tr>
+                  
+                    <tr>
+                        <th>Email</th>
+                        <th><input [(ngModel)]="userDetails.email"  placeholder="Adresse email" name="email"
+                                required></th>
+                    </tr>
+                    <tr>
+                        <th>Age</th>
+                        <th><input [(ngModel)]="userDetails.age"  required name="age"></th>
+                    </tr>
+                    <tr>
+                        <th>Famille</th>
+                        <th><input [(ngModel)]="userDetails.family"  placeholder="Famille" required
+                                name="family">{{userDetails.family}}</th>
+                    </tr>
+                    <tr>
+                        <th>Nourriture</th>
+                        <th><input [(ngModel)]="userDetails.food"  placeholder="Famille" required
+                                name="food"></th>
+                    </tr>
+
+                    <tr>
+                        <td colspan="2" class="text-center">
+                            <input class="btn btn-danger" type="button" (click)="onLogout()" value="Déconnexion" />
+                            <input type="button" class="btn btn-warning" (click)="updateProfile()" value="Enregistrer">
+                            <input type="button" class="btn btn-success" routerLink="/contact" value="Contact">
+                        </td>
+                    </tr>
+
+                </tbody>
+            </table>
+
+        </div>
+    </div>
+</div>
+
+<div class="alert alert-primary" role="alert" *ngIf="errorMessage">
+        {{errorMessage}}
+    </div>
+    
+    <div class="alert alert-success" role="alert" *ngIf="sucess">
+        <p>Connexion réussie !</p>
+    </div>
