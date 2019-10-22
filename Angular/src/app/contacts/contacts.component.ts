@@ -14,6 +14,7 @@ export class ContactsComponent implements OnInit {
   contacts: Contact[];
   possibleContacts: Object;
   selected: string;
+  email: string;
   
   constructor(private router: Router, private contactService: ContactService, private userService: UserService) { }
 
@@ -101,5 +102,18 @@ export class ContactsComponent implements OnInit {
   onLogout() {
     this.userService.deleteToken();
     this.router.navigate(['/connexion']);
+  }
+
+  addExterneContact(){
+    this.contactService.addExterneContact(this.email).subscribe(
+      res => {
+        this.retrieveContactsList();
+        this.constructContactsList();
+      },
+      err => {
+        localStorage.removeItem('token');
+        this.router.navigate(['/connexion']);
+      }
+    )
   }
 }

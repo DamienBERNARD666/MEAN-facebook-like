@@ -6,7 +6,8 @@
                 <ul class="list-group">
                     <h1 class="text-center">Votre carnet d'adresse</h1>
                     <li class="list-group-item" *ngFor="let contact of contacts">{{ contact.contact }} <button
-                            class="btn btn-danger" onclick="return false;" (click)="deleteOne(contact)" >Supprimer</button></li>
+                            class="btn btn-danger" onclick="return false;"
+                            (click)="deleteOne(contact)">Supprimer</button></li>
                 </ul>
             </div>
 
@@ -14,19 +15,27 @@
             <div class="form-group" *ngIf="possibleContacts">
                 <label for="exampleFormControlSelect1">Choissisez un contact</label>
                 <select [(ngModel)]="selected" class="form-control" id="exampleFormControlSelect1">
-                    <option  *ngFor="let cc of possibleContacts" value="{{cc}}">{{cc}}</option>
+                    <option *ngFor="let cc of possibleContacts" value="{{cc}}">{{cc}}</option>
 
                 </select>
                 <button (click)="addContact(selected)" class="btn btn-secondary">
-                        +
-                      </button>
+                    +
+                </button>
             </div>
+            <form action="" (submit)="addExterneContact(email)">
+                <div class="form-group">
+                    <label for="externalContact">Ajouter un contact extérieur</label>
+                    <input name="externeContact"class="form-control" type="text" id="externalContact" [(ngModel)]="email">
+                    <button class="btn btn-primary"> + </button>
+                </div>
+            </form>
         </div>
+
     </div>
     <div class="row">
         <div class="col-6 offset-4">
-                <input class="btn btn-danger" type="button" (click)="onLogout()" value="Déconnexion" />
-                <input type="button" class="btn btn-success" routerLink="/profil" value="Profil">
+            <input class="btn btn-danger" type="button" (click)="onLogout()" value="Déconnexion" />
+            <input type="button" class="btn btn-success" routerLink="/profil" value="Profil">
         </div>
     </div>
 </div>

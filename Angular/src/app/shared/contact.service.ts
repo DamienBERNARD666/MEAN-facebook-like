@@ -44,6 +44,13 @@ export class ContactService {
     return this.http.put(environment.apiBaseUrl + '/contacts', { email: email }, {headers: headers});
   }
 
+  addExterneContact(email: string) {
+    const headers = new HttpHeaders({
+      'Authorization': 'Bearer ' + sessionStorage.getItem("token")
+    })
+    return this.http.put(environment.apiBaseUrl + '/addExterneContact', { contact: email})
+
+  }
 }
 
 

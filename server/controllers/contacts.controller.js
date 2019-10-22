@@ -52,3 +52,26 @@ module.exports.delete = (req, res, next) => {
         }
     )
 }
+
+module.exports.addExterneContact = (req, res, next) => {
+    var contact = new Contact();
+    contact.contact = req.body.contact;
+    console.log(req._id);
+    User.findById(req._id, (err, doc) =>{
+        contact.main = doc['email'];
+        contact.save((err, doc) =>{
+            if(!err) {
+                res.send(doc);
+                res.end();
+            } else {
+                console.log(err)
+                if(err.code === 1100) {
+                    res.status(422).send['Doublon trouvé'];
+                }
+                else {
+                    return next(err);
+                }
+            }
+        })
+    })
+}

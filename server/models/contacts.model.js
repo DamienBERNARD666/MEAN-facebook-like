@@ -4,11 +4,11 @@ const mongoose = require('mongoose');
 var contactSchema = new mongoose.Schema({
     main: {
         type: String,
-        required: 'Email can\'t be empty'
+        required: 'Le compte est nécessaire'
     },
     contact: {
         type: String,
-        required: 'Email can\'t be empty'
+        required: 'Email'
     },
 });
 

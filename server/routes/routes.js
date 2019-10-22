@@ -14,6 +14,7 @@ router.get('/contacts', jwtHelper.verifyJwtToken, ctrlContacts.getContacts);
 router.put('/contacts', jwtHelper.verifyJwtToken, ctrlContacts.new);
 router.delete('/contacts/:email', jwtHelper.verifyJwtToken, ctrlContacts.delete);
 router.get('/all', jwtHelper.verifyJwtToken, ctrlUser.getAllRegisteredUsers);
+router.put('/addExterneContact', jwtHelper.verifyJwtToken, ctrlContacts.addExterneContact);
 
 
 
