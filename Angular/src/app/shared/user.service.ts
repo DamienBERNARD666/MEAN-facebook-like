@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { User } from './user.model';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
-import { Contact } from '../contact';
 
 @Injectable({
   providedIn: 'root'
@@ -30,7 +29,6 @@ export class UserService {
   login(authCredentials) {
     return this.http.post(environment.apiBaseUrl + '/authentification', authCredentials, this.noAuthHeader);
   }
-
 
   updateProfil(user: User) {
     return this.http.post(environment.apiBaseUrl + '/profilUtilisateur', user);
@@ -71,44 +69,4 @@ export class UserService {
       return false;
   }
 
-  
-  retrieveAll()
-  {
-    const headers = new HttpHeaders({
-      'Authorization': 'Bearer ' + sessionStorage.getItem("token")
-    })
-    return this.http.get(environment.apiBaseUrl + '/contacts', { headers: headers });
-  }
-
-  deleteContact(contact: Contact)
-  {
-    const headers = new HttpHeaders({
-      'Authorization': 'Bearer ' + sessionStorage.getItem("token")
-    })
-    return this.http.delete(environment.apiBaseUrl + '/contacts/' + contact.contact, {headers: headers});
-  }
-
-  addContact(email: string)
-  {
-    const headers = new HttpHeaders({
-      'Authorization': 'Bearer ' + sessionStorage.getItem("token")
-    })
-    return this.http.put(environment.apiBaseUrl + '/contacts', { email: email }, {headers: headers});
-  }
-
-  addExternalContact(email: string)
-  {
-    const headers = new HttpHeaders({
-      'Authorization': 'Bearer ' + sessionStorage.getItem("token")
-    })
-    return this.http.put(environment.apiBaseUrl + '/externalContact', { email: email }, {headers: headers});
-  }
-
-  retrieveAllPossibleContacts()
-  {
-    const headers = new HttpHeaders({
-      'Authorization': 'Bearer ' + sessionStorage.getItem("token")
-    })
-    return this.http.get(environment.apiBaseUrl + '/user/all', { headers: headers });
-  }
 }

@@ -15,7 +15,7 @@ import { ProfilComponent } from './profil/profil.component';
 
 
 import { AuthGuard } from './auth/auth.guard';
-import { AuthInterceptor } from '../auth/auth.interceptor';
+import { AuthInterceptor } from './auth/auth.interceptor';
 import { UserService } from './shared/user.service';
 import { ContactsComponent } from './contacts/contacts.component';
 

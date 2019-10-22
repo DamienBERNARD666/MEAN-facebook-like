@@ -3,6 +3,7 @@ const passport = require('passport');
 const _ = require('lodash');
 
 const User = mongoose.model('User');
+const Contact = mongoose.model('Contact')
 
 module.exports.inscription = (req, res, next) => {
     var user = new User();
@@ -55,7 +56,8 @@ module.exports.profilUtilisateur = (req, res, next) => {
 
 
 module.exports.updateProfil = (req, res, next) => {
-    User.updateOne({ _id: req._id },
+    console.log(req._id);
+    User.updateOne({ _id: req._id }, req.body,
         (err, user) => {
             res.status(200).json({
                 fullName: user.fullName,
@@ -67,6 +69,7 @@ module.exports.updateProfil = (req, res, next) => {
             })
         })
 }
+
 
 
 

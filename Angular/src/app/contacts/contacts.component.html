@@ -1,13 +1,32 @@
-<div>
-    <ul>
-        <li *ngFor="let contact of contacts"> {{ contact.contact }}<a href="" onclick="return false;" (click)="deleteOne(contact) && remove()">Supprimer</a>  </li>
-    </ul>
-</div>
+<div class="container">
+    <div class="row">
+        <div class="col-6 offset-4">
 
-<div class="form-group" *ngIf="possibleContacts">
-    <label for="exampleFormControlSelect1">Choissisez un contact</label>
-    <select class="form-control" id="exampleFormControlSelect1">
-        <option *ngFor="let cc of possibleContacts" value="{{cc}}">{{cc}}</option>
-   
-    </select>
+            <div #contactsList>
+                <ul class="list-group">
+                    <h1 class="text-center">Votre carnet d'adresse</h1>
+                    <li class="list-group-item" *ngFor="let contact of contacts">{{ contact.contact }} <button
+                            class="btn btn-danger" onclick="return false;" (click)="deleteOne(contact)" >Supprimer</button></li>
+                </ul>
+            </div>
+
+
+            <div class="form-group" *ngIf="possibleContacts">
+                <label for="exampleFormControlSelect1">Choissisez un contact</label>
+                <select [(ngModel)]="selected" class="form-control" id="exampleFormControlSelect1">
+                    <option  *ngFor="let cc of possibleContacts" value="{{cc}}">{{cc}}</option>
+
+                </select>
+                <button (click)="addContact(selected)" class="btn btn-secondary">
+                        +
+                      </button>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-6 offset-4">
+                <input class="btn btn-danger" type="button" (click)="onLogout()" value="Déconnexion" />
+                <input type="button" class="btn btn-success" routerLink="/profil" value="Profil">
+        </div>
+    </div>
 </div>

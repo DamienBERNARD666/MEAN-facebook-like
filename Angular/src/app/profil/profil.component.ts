@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { UserService } from '../shared/user.service';
 import { Router } from '@angular/router';
 import { User } from '../shared/user.model';
+import { NgForm } from '@angular/forms';
 
 
 
@@ -28,13 +29,14 @@ export class ProfilComponent implements OnInit {
     );
   }
 
-  updateProfile(){
-    this.userService.updateProfil(this.userDetails).subscribe(
+  updateProfile(profilForm : NgForm){
+    console.log(this.userDetails);
+    this.userService.updateProfil(profilForm.value).subscribe(
       res => {
         this.success = "Profil mis à jour avec succès !";
       },
       err => {
-        this.errorMessage = err.error.join("<br />");
+        this.errorMessage = err.error.join('<br>');
       }
     );
 
