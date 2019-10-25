@@ -6,10 +6,9 @@ const User = mongoose.model("User");
 module.exports.new = (req, res, next) => {
     var contact = new Contact();
     contact.contact = req.body.email;
-    User.findOne({ _id: req._id },
+        User.findOne({ _id: req._id },
         (err, doc) => {
             contact.main = doc['email'];
-            
             contact.save((err, doc) => {
                 console.log("New contact saved :", doc);
                 if(!err){
@@ -27,6 +26,7 @@ module.exports.new = (req, res, next) => {
                         return next(err);
                 }
             })
+        
         }
     )
 }
@@ -55,12 +55,16 @@ module.exports.delete = (req, res, next) => {
 
 module.exports.addExterneContact = (req, res, next) => {
     var contact = new Contact();
+    var contact2 = new Contact();
     contact.contact = req.body.contact;
+    contact2.main = req.body.contact;
     console.log(req._id);
     User.findById(req._id, (err, doc) =>{
         contact.main = doc['email'];
+        contact2.contact = doc['email'];
         contact.save((err, doc) =>{
             if(!err) {
+                contact2.save();
                 res.send(doc);
                 res.end();
             } else {
