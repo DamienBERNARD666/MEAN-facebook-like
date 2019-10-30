@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ChatService } from '../shared/chat.service';
 import { UserService } from '../shared/user.service';
 import { User } from '../shared/user.model';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-chatroom',
@@ -15,7 +16,7 @@ export class ChatroomComponent implements OnInit {
   private message: String;
   private messageArray: String[] = [];
   private isTyping: boolean = false;
-  constructor(private chatService : ChatService, private userService: UserService) { 
+  constructor(private chatService : ChatService, private userService: UserService, private router: Router) { 
  
 
     this.chatService.receivedTyping().subscribe((bool => {
@@ -52,5 +53,8 @@ export class ChatroomComponent implements OnInit {
   typing(){
     this.chatService.typing(this.username.fullName);
   }
-
+  onLogout(){
+    this.userService.deleteToken();
+    this.router.navigate(['/connexion']);
+  }
 }
