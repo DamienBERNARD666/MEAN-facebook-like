@@ -1,12 +1,14 @@
 {
     "developpment": {
         "PORT" : 3000,
+        "PORT_CHAT": 3010,
         "MONGODB_URI": "mongodb://localhost:27017/testAppartooDB",
         "JWT_SECRET": "SECRET#123",
         "JWT_EXP": "10m"
     },
     "production": {
         "PORT": 80,
+        "PORT_CHAT": 3010,
         "MONGODB_URI": "mongodb://localhost:27017/testAppartooDB",
         "JWT_SECRET": "SECRET#123",
         "JWT_EXP": "10m"

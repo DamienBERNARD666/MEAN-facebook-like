@@ -7,7 +7,9 @@
 
 }
 
-
+.btn-custom {
+  background-color: pink;
+}
 .onglet:hover {
     color: black;
 }
@@ -17,7 +19,7 @@
     align-items: center;
     flex-direction: column; 
     justify-content: center;
-    width: 100%;
+    width: 80%;
     padding: 20px;
   }
   

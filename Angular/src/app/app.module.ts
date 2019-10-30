@@ -18,6 +18,8 @@ import { AuthGuard } from './auth/auth.guard';
 import { AuthInterceptor } from './auth/auth.interceptor';
 import { UserService } from './shared/user.service';
 import { ContactsComponent } from './contacts/contacts.component';
+import { ChatService } from './shared/chat.service';
+import { ChatroomComponent } from './chatroom/chatroom.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +28,8 @@ import { ContactsComponent } from './contacts/contacts.component';
     SignUpComponent,
     SignInComponent,
     ProfilComponent,
-    ContactsComponent
+    ContactsComponent,
+    ChatroomComponent
   ],
   imports: [
     BrowserModule,
@@ -36,7 +39,7 @@ import { ContactsComponent } from './contacts/contacts.component';
   ],
   providers: [{provide: HTTP_INTERCEPTORS,
     useClass: AuthInterceptor,
-    multi: true},AuthGuard, UserService],
+    multi: true},AuthGuard, UserService, ChatService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

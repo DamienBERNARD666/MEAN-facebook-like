@@ -1,0 +1,34 @@
+<!-- <div id="chat-room">
+    <h2>{{ username }}</h2>
+    <span><i *ngIf="isTyping" class="isTyping">typing...</i></span>
+    <div id="chat-window">
+        <div *ngFor="let item of messageArray">
+            <p [class.userMessage] = "item.user == userService.getLoggedInUser().username" [class.secUserMessage]="item.user != userService.getLoggedInUser().username">{{ item.message }}</p>                
+        </div>
+    </div>
+    <input (keypress)="typing()" [(ngModel)]="message" name="message" type="text" placeholder="Message" />            
+    <button id="send" (click)="sendMessage()">Send</button>    
+</div> -->
+
+<div class="container">
+    <div class="row">
+        <div class="col-6 offset-4">
+            <ul id="messages">
+                <li *ngFor="let message of messageArray"> {{message.user }} à écrit : {{message.message}} </li>
+            </ul>
+            <span><i *ngIf="isTyping" class="isTyping">{{ usernameTyping }} est en train d'écrire...</i></span>
+            <div class="chat form-container">
+                <form action="">
+                    <div class="form-group">
+                        <input id="m" (keyup)="typing()" [(ngModel)]="message" name="message" type="text"
+                            placeholder="Message..." autocomplete="off" class="form-control" />
+                    </div>
+                    <button class="btn btn-custom" (click)="sendMessage()">Envoyer</button>
+                    <input class="btn btn-danger" type="button" (click)="onLogout()" value="Déconnexion" />
+                    <input type="button" class="btn btn-success" routerLink="/profil" value="Profil">
+                    <input type="button" class="btn btn-secondary" routerLink="/contact" value="Contact">
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

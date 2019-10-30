@@ -6,6 +6,8 @@ import { SignUpComponent } from './user/sign-up/sign-up.component';
 import { ProfilComponent } from './profil/profil.component';
 import { AuthGuard } from './auth/auth.guard';
 import { ContactsComponent } from './contacts/contacts.component';
+import { ChatService } from './shared/chat.service';
+import { ChatroomComponent } from './chatroom/chatroom.component';
 
 
 
@@ -27,7 +29,10 @@ const routes: Routes = [
     path: '', redirectTo: '/connexion', pathMatch: 'full'
   },
   {
-    path: 'contact', component: ContactsComponent
+    path: 'contact', component: ContactsComponent,canActivate:[AuthGuard]
+  },
+  {
+    path: 'chat', component: ChatroomComponent, canActivate:[AuthGuard]
   }
 ];
 
