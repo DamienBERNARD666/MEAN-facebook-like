@@ -12,18 +12,11 @@ export class ChatroomComponent implements OnInit {
   private username: User;
   private usernameTyping: String;
   private email: String;
-  private chatroom;
   private message: String;
   private messageArray: String[] = [];
   private isTyping: boolean = false;
   constructor(private chatService : ChatService, private userService: UserService) { 
-    // this.chatService.newMessageReceived().subscribe(data => {
-    //   this.messageArray.push(data);
-    //   this.isTyping = false;
-    // });
-    // this.chatService.receivedTyping().subscribe(bool => {
-    //   this.isTyping = bool.isTyping;
-    // });
+ 
 
     this.chatService.receivedTyping().subscribe((bool => {
       this.usernameTyping= bool.user;
@@ -32,7 +25,7 @@ export class ChatroomComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.email ='1234@gmail.com';
+    // this.email ='1234@gmail.com';
     this.chatService.getMessage().subscribe((message: string) => {
       // console.log(message);
       this.messageArray.push(message);
