@@ -23,34 +23,35 @@
                         #email="ngModel" [(ngModel)]="userDetails.email" name="email">
                 </div>
                 <div class="form-group">
-                        <label for="exampleInputFamily1">Famille</label>
-                        <input required type="text" class="form-control" id="exampleInputFamily1" placeholder="Famille..."
-                            #family="ngModel" [(ngModel)]="userDetails.family" name="family">
+                    <label for="exampleInputFamily1">Famille</label>
+                    <input required type="text" class="form-control" id="exampleInputFamily1" placeholder="Famille..."
+                        #family="ngModel" [(ngModel)]="userDetails.family" name="family">
                 </div>
                 <div class="form-group">
-                        <label for="exampleInputAge1">Age</label>
-                        <input required type="text" class="form-control" id="exampleInputAge1" placeholder="Age..."
-                            #age="ngModel" [(ngModel)]="userDetails.age" name="age">
+                    <label for="exampleInputAge1">Age</label>
+                    <input required type="text" class="form-control" id="exampleInputAge1" placeholder="Age..."
+                        #age="ngModel" [(ngModel)]="userDetails.age" name="age">
                 </div>
                 <div class="form-group">
-                        <label for="exampleInputRace1">Race</label>
-                        <input required type="text" class="form-control" id="exampleInputRace1" placeholder="Race..."
-                            #race="ngModel" [(ngModel)]="userDetails.race" name="race">
+                    <label for="exampleInputRace1">Race</label>
+                    <input required type="text" class="form-control" id="exampleInputRace1" placeholder="Race..."
+                        #race="ngModel" [(ngModel)]="userDetails.race" name="race">
                 </div>
                 <div class="form-group">
-                        <label for="exampleInputFood1">Nourriture</label>
-                        <input required type="text" class="form-control" id="exampleInputFood1" placeholder="Nourriture"
-                            #food="ngModel" [(ngModel)]="userDetails.food" name="food">
+                    <label for="exampleInputFood1">Nourriture</label>
+                    <input required type="text" class="form-control" id="exampleInputFood1" placeholder="Nourriture"
+                        #food="ngModel" [(ngModel)]="userDetails.food" name="food">
                 </div>
 
+                <div class="btn-group" role="group">
+                    <button type="submit" class="btn btn-success">Enregistrer les modifications</button>
+                    <input class="btn btn-danger" type="button" (click)="onLogout()" value="Déconnexion" />
+                    <input type="button" class="btn btn-info" routerLink="/contact" value="Contact">
+                    <button class="btn btn-custom" routerLink='/chat'>Accèder au Chat secret</button>
+                </div>
 
-                <button type="submit" class="btn btn-primary">Enregistrer les modifications</button>
-
-                <input class="btn btn-danger" type="button" (click)="onLogout()" value="Déconnexion" />
-                <input type="button" class="btn btn-success" routerLink="/contact" value="Contact">
-                <button class="btn btn-custom" routerLink='/chat'>Accèder au Chat secret</button>
             </form>
-     
+
 
         </div>
     </div>

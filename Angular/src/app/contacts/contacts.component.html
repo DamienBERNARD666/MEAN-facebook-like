@@ -25,7 +25,8 @@
             <form action="" (submit)="addExterneContact(email)">
                 <div class="form-group">
                     <label for="externalContact">Ajouter un contact extérieur</label>
-                    <input name="externeContact"class="form-control" type="text" id="externalContact" [(ngModel)]="email">
+                    <input name="externeContact" class="form-control" type="text" id="externalContact"
+                        [(ngModel)]="email">
                     <button class="btn btn-primary"> + </button>
                 </div>
             </form>
@@ -33,10 +34,13 @@
 
     </div>
     <div class="row">
-        <div class="col-6 offset-4">
-            <input class="btn btn-danger" type="button" (click)="onLogout()" value="Déconnexion" />
-            <input type="button" class="btn btn-success" routerLink="/profil" value="Profil">
-            <button class="btn btn-custom" routerLink='/chat'>Accèder au Chat secret</button>
+        <div class="col-6 offset-4 col-sm-12">
+            <div class="btn-group" role="group">
+                <input class="btn btn-danger" type="button" (click)="onLogout()" value="Déconnexion" />
+                <input type="button" class="btn btn-info" routerLink="/profil" value="Profil">
+                <button class="btn btn-custom" routerLink='/chat'>Accèder au Chat secret</button>
+            </div>
+
         </div>
     </div>
 </div>
