@@ -12,7 +12,7 @@ Une fois les dépendances installés, vous devez lancer
 
 
 ```
-ng serve -o
+ng serve
 ``` 
 
 dans le dossier "Angular" et 
@@ -24,3 +24,5 @@ node app.js
 
 
 dans le dossier "server".
+
+Enfin, vous devez ouvrir votre navigateur à l'adresse : http://localhost/4200/
