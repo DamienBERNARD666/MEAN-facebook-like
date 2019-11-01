@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { ContactService } from '../shared/contact.service';
 import { Contact } from '../shared/contact.model';
 import { UserService } from '../shared/user.service';
+import { ChatService } from '../shared/chat.service';
 
 @Component({
   selector: 'app-contacts',
@@ -15,8 +16,9 @@ export class ContactsComponent implements OnInit {
   possibleContacts: Object;
   selected: string;
   email: string;
-  
-  constructor(private router: Router, private contactService: ContactService, private userService: UserService) { }
+  room: String;
+
+  constructor(private router: Router, private contactService: ContactService, private userService: UserService, private chatService: ChatService) { }
 
   ngOnInit() {
     this.retrieveContactsList();
@@ -35,6 +37,7 @@ export class ContactsComponent implements OnInit {
           contact = new Contact();
           contact.main = res[i]['main'];
           contact.contact = res[i]['contact'];
+          contact.roomID = res[i]['roomID']
           this.contacts.push(contact);
         }
       },
@@ -46,18 +49,17 @@ export class ContactsComponent implements OnInit {
   }
 
 
-    constructContactsList()
-    {
-      this.contactService.retrieveAllPossibleContacts().subscribe(
-        res => {
-          this.possibleContacts = res;
-        },
-        err => {
-          sessionStorage.removeItem("token");
-          this.router.navigate(['/connexion']);
-        }
-      )
-    }
+  constructContactsList() {
+    this.contactService.retrieveAllPossibleContacts().subscribe(
+      res => {
+        this.possibleContacts = res;
+      },
+      err => {
+        sessionStorage.removeItem("token");
+        this.router.navigate(['/connexion']);
+      }
+    )
+  }
 
   addContact(selected) {
     if (selected == undefined || selected.toLowerCase() == "none")
@@ -104,7 +106,7 @@ export class ContactsComponent implements OnInit {
     this.router.navigate(['/connexion']);
   }
 
-  addExterneContact(){
+  addExterneContact() {
     this.contactService.addExterneContact(this.email).subscribe(
       res => {
         this.retrieveContactsList();
@@ -115,5 +117,24 @@ export class ContactsComponent implements OnInit {
         this.router.navigate(['/connexion']);
       }
     )
+  }
+
+
+
+  defineContactsRoom(contact: Contact) {
+    let contactChat = JSON.parse(JSON.stringify(this.contacts));
+    // console.log(contactChat);
+    // console.log(contact.roomID);
+    for (var i = 0; i < contactChat.length; i++) {
+      if (contactChat[i].romID = contact.roomID) {
+        this.chatService.room = contact.roomID;
+        this.chatService.contactEmail = contact.contact;
+        // console.log(this.chatService.room);
+        // // Object.
+         break;
+      }
+
+    }
+
   }
 }

@@ -6,4 +6,5 @@ mongoose.connect(process.env.MONGODB_URI,{ useNewUrlParser: true }, (err) => {
 })
 
 require('./user.model');
+require('./message.model');
 require('./contacts.model');

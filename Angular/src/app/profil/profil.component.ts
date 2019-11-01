@@ -12,7 +12,15 @@ import { NgForm } from '@angular/forms';
   styleUrls: ['./profil.component.css']
 })
 export class ProfilComponent implements OnInit {
-  userDetails: User;
+  userDetails: User = {
+    fullName: '',
+    email: '',
+    password: '',
+    family: '',
+    age: 0,
+    race: '',
+    food: '',
+};
   errorMessage: string;
   success: string;
   constructor(private userService: UserService, private router: Router) { }

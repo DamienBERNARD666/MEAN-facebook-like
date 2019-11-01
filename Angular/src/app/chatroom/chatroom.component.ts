@@ -3,6 +3,8 @@ import { ChatService } from '../shared/chat.service';
 import { UserService } from '../shared/user.service';
 import { User } from '../shared/user.model';
 import { Router } from '@angular/router';
+import { THIS_EXPR, ThrowStmt } from '@angular/compiler/src/output/output_ast';
+import { Message } from '../shared/message.model';
 
 @Component({
   selector: 'app-chatroom',
@@ -15,9 +17,11 @@ export class ChatroomComponent implements OnInit {
   private email: String;
   private message: String;
   private messageArray: String[] = [];
+  private messageArrayReceveid: Message[];
+  private messageArraySend: Message[];
   private isTyping: boolean = false;
+
   constructor(private chatService : ChatService, private userService: UserService, private router: Router) { 
- 
 
     this.chatService.receivedTyping().subscribe((bool => {
       this.usernameTyping= bool.user;
@@ -27,12 +31,71 @@ export class ChatroomComponent implements OnInit {
 
   ngOnInit() {
     // this.email ='1234@gmail.com';
-    this.chatService.getMessage().subscribe((message: string) => {
+    this.chatService.joinRoom(this.chatService.room);
+  
+    this.chatService.getAllMessagesSend().subscribe(
+      res => {
+        let messageSend : Message;
+        let i;
+        this.messageArraySend = [];
+        for(i in res)
+        {
+          messageSend = new Message();
+          messageSend.sender = res[i]['sender'];
+          messageSend.receiver = res[i]['receiver'];
+          messageSend.message = res[i]['message'];
+          messageSend.roomID = res[i]['roomID'];
+          // console.log(messageSend.roomID);
+          // console.log(this.chatService.room);
+          if (messageSend.roomID == this.chatService.room) {
+            this.messageArraySend.push(messageSend);
+
+          }
+
+        }
+      },
+      err => {
+        console.log(err);
+      }
+    );
+
+    
+
+
+    this.chatService.getAllMessages().subscribe(
+      res => {
+        // console.log(res);
+        let message : Message;
+        let i;
+        this.messageArrayReceveid = [];
+        for(i in res)
+        {
+          message = new Message();
+          message.sender = res[i]['sender'];
+          message.receiver = res[i]['receiver'];
+          message.message = res[i]['message'];
+          message.roomID = res[i]['roomID'];
+          // console.log(message.roomID);
+          // console.log(this.chatService.room);
+          if (message.roomID == this.chatService.room) {
+            this.messageArrayReceveid.push(message);
+
+          }
+
+        }
+        // console.log(this.messageArrayReceveid);
+      },
+      err => {
+        console.log(err);
+      }
+    );
+
+    this.chatService.getMessage().subscribe((message: string, user: string) => {
       // console.log(message);
       this.messageArray.push(message);
       // console.log(this.messageArray);
     
-    })
+    });
     this.userService.getUserProfil().subscribe(
       res => {
         this.username = res['user'];
@@ -42,16 +105,20 @@ export class ChatroomComponent implements OnInit {
         
       }
     );
-  
+    
   }
 
+
   sendMessage(){
-    this.chatService.sendMessage({ user: this.username.fullName, message: this.message});
+    // console.log(this.chatService.contactEmail);
+    // console.log(this.username.email)
+    this.chatService.sendMessage({ sender: this.username.email, receiver: this.chatService.contactEmail, message: this.message, room: this.chatService.room});
+  
     this.message = '';
     this.isTyping= false;
   }
   typing(){
-    this.chatService.typing(this.username.fullName);
+    this.chatService.typing({ user: this.username.fullName, roomID: this.chatService.room});
   }
   onLogout(){
     this.userService.deleteToken();

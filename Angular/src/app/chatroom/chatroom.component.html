@@ -1,25 +1,33 @@
-
-
 <div class="container">
     <div class="row">
         <div class="col-6 offset-4">
+
             <ul id="messages" class="list-group">
-                <li class="list-group-item" *ngFor="let message of messageArray"> {{message.user }} : {{message.message}} </li>
+                    <li class="list-group-item" *ngFor="let messageSend of messageArraySend"> <strong>{{messageSend.sender }}
+                        </strong> :
+                        {{messageSend.message}} </li>
+                <li class="list-group-item" *ngFor="let message of messageArrayReceveid"> <strong>{{message.sender }}
+                    </strong> :
+                    {{message.message}} </li>
+                <li class="list-group-item" *ngFor="let message of messageArray">{{message.user}} : {{message.message}}
+                </li>
+
             </ul>
             <span><i *ngIf="isTyping" class="isTyping">{{ usernameTyping }} est en train d'écrire...</i></span>
             <div class="chat form-container">
                 <form action="">
                     <div class="form-group">
-                        <input id="m" (keypress)="typing()" [(ngModel)]="message" name="message" (keyup.enter)="sendMessage()" type="text"
-                            placeholder="Message..." autocomplete="off" class="form-control" />
+                        <input id="m" (keypress)="typing()" [(ngModel)]="message" name="message"
+                            (keyup.enter)="sendMessage()" type="text" placeholder="Message..." autocomplete="off"
+                            class="form-control" />
                     </div>
                     <div class="btn-group" role="group">
-                            <button type="button" class="btn btn-custom" (click)="sendMessage()">Envoyer</button>
-                            <input class="btn btn-danger" type="button" (click)="onLogout()" value="Déconnexion" />
-                            <input type="button" class="btn btn-success" routerLink="/profil" value="Profil">
-                            <input type="button" class="btn btn-secondary" routerLink="/contact" value="Contact">
+                        <button type="button" class="btn btn-custom" (click)="sendMessage()">Envoyer</button>
+                        <input class="btn btn-danger" type="button" (click)="onLogout()" value="Déconnexion" />
+                        <input type="button" class="btn btn-success" routerLink="/profil" value="Profil">
+                        <input type="button" class="btn btn-info" routerLink="/contact" value="Contact">
                     </div>
-                    
+
                 </form>
             </div>
         </div>

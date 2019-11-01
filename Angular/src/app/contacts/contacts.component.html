@@ -7,7 +7,7 @@
                     <h1 class="text-center">Votre carnet d'adresse</h1>
                     <li class="list-group-item" *ngFor="let contact of contacts">{{ contact.contact }} <button
                             class="btn btn-danger" onclick="return false;"
-                            (click)="deleteOne(contact)">Supprimer</button></li>
+                            (click)="deleteOne(contact)">X</button> <button type="button" routerLink='/chat' (click)="defineContactsRoom(contact)" class="btn btn-custom">Chat</button></li>
                 </ul>
             </div>
 
@@ -38,7 +38,6 @@
             <div class="btn-group" role="group">
                 <input class="btn btn-danger" type="button" (click)="onLogout()" value="Déconnexion" />
                 <input type="button" class="btn btn-info" routerLink="/profil" value="Profil">
-                <button class="btn btn-custom" routerLink='/chat'>Accèder au Chat secret</button>
             </div>
 
         </div>

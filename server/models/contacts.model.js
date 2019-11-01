@@ -10,6 +10,9 @@ var contactSchema = new mongoose.Schema({
         type: String,
         required: 'Email'
     },
+    roomID: {
+        type: String
+    }
 });
 
 contactSchema.index({main: 1, contact: 1}, {unique: true});

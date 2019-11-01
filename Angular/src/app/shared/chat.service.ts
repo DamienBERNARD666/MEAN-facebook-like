@@ -2,19 +2,21 @@ import { Injectable } from '@angular/core';
 import * as io from 'socket.io-client';
 import { environment } from 'src/environments/environment';
 import { Observable } from 'rxjs';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ChatService {
   private socket;
+  room : string;
+  contactEmail: string;
 
-  constructor() { 
+  constructor(private http : HttpClient) { 
     this.socket =  io.connect(environment.apiBaseUrlChat);
   }
 
   joinRoom(data) {
-    console.log(data);
     this.socket.emit('join', data);
   }
 
@@ -29,6 +31,23 @@ export class ChatService {
       });
     })
   }
+
+  getAllMessages(){
+    const headers = new HttpHeaders({
+      'Authorization': 'Bearer ' + sessionStorage.getItem("token")
+    })
+    return this.http.get(environment.apiBaseUrl + '/messagesReceived', {headers: headers});
+  }
+
+
+  getAllMessagesSend(){
+    const headers = new HttpHeaders({
+      'Authorization': 'Bearer ' + sessionStorage.getItem("token")
+    })
+    return this.http.get(environment.apiBaseUrl + '/messagesSend', {headers: headers});
+
+  }
+
 
 
   newMessageReceived() {
@@ -45,6 +64,10 @@ export class ChatService {
 
   typing(data) {
     this.socket.emit('typing', data);
+  }
+
+  enter(data){
+    this.socket.emit('enter', data)
   }
 
   receivedTyping() {

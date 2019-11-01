@@ -56,7 +56,7 @@ module.exports.profilUtilisateur = (req, res, next) => {
 
 
 module.exports.updateProfil = (req, res, next) => {
-    console.log(req._id);
+    // console.log(req._id);
     User.updateOne({ _id: req._id }, req.body,
         (err, user) => {
             res.status(200).json({
