@@ -49,7 +49,6 @@ export class ChatroomComponent implements OnInit {
           // console.log(this.chatService.room);
           if (messageSend.roomID == this.chatService.room) {
             this.messageArraySend.push(messageSend);
-
           }
 
         }
@@ -90,6 +89,8 @@ export class ChatroomComponent implements OnInit {
       }
     );
 
+    
+
     this.chatService.getMessage().subscribe((message: string, user: string) => {
       // console.log(message);
       this.messageArray.push(message);
@@ -105,7 +106,7 @@ export class ChatroomComponent implements OnInit {
         
       }
     );
-    
+
   }
 
 

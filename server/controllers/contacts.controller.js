@@ -55,8 +55,8 @@ module.exports.getContacts = (req, res, next) => {
 module.exports.delete = (req, res, next) => {
     User.findOne({ _id: req._id },
         (err, user) => {
-            Contact.deleteOne({main: user.email, contact: req.params.email}, (err) => {
-                
+            Contact.deleteOne({main: user.email, contact: req.params.email}, (err, res) => {
+               if(!err)  { Contact.deleteOne({main: req.params.email, contact: user.email}) };
             })
         }
     )
@@ -67,6 +67,8 @@ module.exports.addExterneContact = (req, res, next) => {
     var contact2 = new Contact();
     contact.contact = req.body.contact;
     contact2.main = req.body.contact;
+    contact.roomID = contact._id;
+    contact2.roomID = contact._id;
     console.log(req._id);
     User.findById(req._id, (err, doc) =>{
         contact.main = doc['email'];
