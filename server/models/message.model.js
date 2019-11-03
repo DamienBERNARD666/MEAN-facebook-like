@@ -2,7 +2,7 @@ var mongoose = require('mongoose'),
     Schema = mongoose.Schema;
 var messageSchema=new Schema({
     sender : {
-        type : String,
+        type : String
     },
     receiver : {
         type : String
@@ -12,6 +12,9 @@ var messageSchema=new Schema({
     },
     roomID : {
         type: String
+    },
+    date: {
+        type: Date
     }
 })
 mongoose.model('Message',messageSchema);

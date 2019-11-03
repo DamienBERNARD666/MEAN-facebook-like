@@ -3,5 +3,6 @@ export class Message {
     receiver: string;
     message: string;
     roomID: string;
+    date: Date;
 
 }

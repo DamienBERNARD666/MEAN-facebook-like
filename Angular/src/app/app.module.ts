@@ -20,6 +20,7 @@ import { UserService } from './shared/user.service';
 import { ContactsComponent } from './contacts/contacts.component';
 import { ChatService } from './shared/chat.service';
 import { ChatroomComponent } from './chatroom/chatroom.component';
+import { AngularFontAwesomeModule } from 'angular-font-awesome';
 
 @NgModule({
   declarations: [
@@ -33,6 +34,7 @@ import { ChatroomComponent } from './chatroom/chatroom.component';
   ],
   imports: [
     BrowserModule,
+    AngularFontAwesomeModule,
     AppRoutingModule,
     HttpClientModule,
     FormsModule

@@ -1,6 +1,6 @@
 <div class="container">
     <div class="row">
-        <div class="col-6 offset-4">
+        <div class="col-12">
                 <table class="table table-bordered">
                         <thead class="thead-dark">
                             <tr>
@@ -16,7 +16,7 @@
                     <li class="list-group-item" *ngFor="let contact of contacts">{{ contact.contact }} 
                         <button
                             class="btn btn-danger" onclick="return false;"
-                            (click)="deleteOne(contact)">X</button> <button type="button" routerLink='/chat' (click)="defineContactsRoom(contact)" class="btn btn-custom">Chat</button></li>
+                            (click)="deleteOne(contact)"><i class="fa fa-trash" aria-hidden="true"></i></button> <button type="button" routerLink='/chat' (click)="defineContactsRoom(contact)" class="btn btn-custom"><i class="fa fa-comment"></i></button></li>
                 </ul>
             </div>
 
@@ -28,7 +28,7 @@
 
                 </select>
                 <button (click)="addContact(selected)" class="btn btn-success">
-                    +
+                    <i class="fa fa-plus"></i>
                 </button>
             </div>
             <form action="" (submit)="addExterneContact(email)">
@@ -36,7 +36,7 @@
                     <label for="externalContact"> <strong>Ajouter un contact extérieur</strong> </label>
                     <input name="externeContact" class="form-control" type="text" id="externalContact"
                         [(ngModel)]="email">
-                    <button class="btn btn-success"> + </button>
+                    <button class="btn btn-success"> <i class="fa fa-plus"></i> </button>
                 </div>
             </form>
         </div>

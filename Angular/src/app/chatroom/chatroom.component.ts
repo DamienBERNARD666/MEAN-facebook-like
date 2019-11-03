@@ -16,9 +16,9 @@ export class ChatroomComponent implements OnInit {
   private usernameTyping: String;
   private email: String;
   private message: String;
-  private messageArray: String[] = [];
-  private messageArrayReceveid: Message[];
-  private messageArraySend: Message[];
+  private messageArray: string[] = [];
+  private messageArrayDB: Message[];
+
   private isTyping: boolean = false;
 
   constructor(private chatService : ChatService, private userService: UserService, private router: Router) { 
@@ -32,12 +32,12 @@ export class ChatroomComponent implements OnInit {
   ngOnInit() {
     // this.email ='1234@gmail.com';
     this.chatService.joinRoom(this.chatService.room);
+    this.messageArrayDB = [];
   
     this.chatService.getAllMessagesSend().subscribe(
       res => {
         let messageSend : Message;
         let i;
-        this.messageArraySend = [];
         for(i in res)
         {
           messageSend = new Message();
@@ -45,10 +45,13 @@ export class ChatroomComponent implements OnInit {
           messageSend.receiver = res[i]['receiver'];
           messageSend.message = res[i]['message'];
           messageSend.roomID = res[i]['roomID'];
-          // console.log(messageSend.roomID);
+          messageSend.date = res[i]['date'];
+                    // console.log(messageSend.roomID);
           // console.log(this.chatService.room);
           if (messageSend.roomID == this.chatService.room) {
-            this.messageArraySend.push(messageSend);
+            this.messageArrayDB.push(messageSend);
+            this.messageArrayDB.sort((b, a) => new Date(b.date).getTime() - new Date(a.date).getTime());
+
           }
 
         }
@@ -66,7 +69,6 @@ export class ChatroomComponent implements OnInit {
         // console.log(res);
         let message : Message;
         let i;
-        this.messageArrayReceveid = [];
         for(i in res)
         {
           message = new Message();
@@ -74,11 +76,12 @@ export class ChatroomComponent implements OnInit {
           message.receiver = res[i]['receiver'];
           message.message = res[i]['message'];
           message.roomID = res[i]['roomID'];
+          message.date = res[i]['date'];
           // console.log(message.roomID);
           // console.log(this.chatService.room);
           if (message.roomID == this.chatService.room) {
-            this.messageArrayReceveid.push(message);
-
+            this.messageArrayDB.push(message);
+            this.messageArrayDB.sort((b, a) => new Date(b.date).getTime() - new Date(a.date).getTime());
           }
 
         }

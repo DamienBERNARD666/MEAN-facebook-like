@@ -76,6 +76,7 @@ io.on('connection', (socket) => {
                 newMessage.receiver = data.receiver;
                 newMessage.message = data.message;
                 newMessage.roomID = foundContact.roomID;
+                newMessage.date = new Date();
                 // console.log(foundUser);
                 io.to(foundContact.roomID).emit('new-message', {message: data.message, user: data.sender });
               

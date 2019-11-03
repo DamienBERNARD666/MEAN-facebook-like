@@ -1,6 +1,6 @@
 <div class="container">
     <div class="row">
-        <div class="col-6 offset-4">
+        <div class="col-12">
                 <table class="table table-bordered">
                         <thead class="thead-dark">
                             <tr>
@@ -10,12 +10,9 @@
                     </table>
 
             <ul id="messages" class="list-group">
-                    <li class="list-group-item" *ngFor="let messageSend of messageArraySend"> <strong>{{messageSend.sender }}
-                        </strong> :
-                        {{messageSend.message}} </li>
-                <li class="list-group-item" *ngFor="let message of messageArrayReceveid"> <strong>{{message.sender }}
+                <li class="list-group-item" *ngFor="let message of messageArrayDB"> <strong>{{message.sender }}
                     </strong> :
-                    {{message.message}} </li>
+                    {{message.message}} <small class="float-right">{{message.date  | date: 'dd/MM/yyyy hh:mm'}}</small></li>
                 <li class="list-group-item" *ngFor="let message of messageArray">{{message.user}} : {{message.message}}
                 </li>
 
