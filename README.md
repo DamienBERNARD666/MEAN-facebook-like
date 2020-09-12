@@ -1,5 +1,5 @@
-# Test_appartoo
-Test appartoo basé sur la stack MEAN (Angular8/NodeJS/MongoDB)
+# MEANFacebookLike
+Application web basée sur la stack MEAN (Angular8/NodeJS/MongoDB)
 
 
 Pour utiliser cette application, vous devez installer les dépendances nécessaires dans le fichier "Angular" ainsi que dans "server" en utilisant la commande:
